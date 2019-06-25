@@ -8,17 +8,16 @@ function preload() {
 function setup() {
     createCanvas(1000, 300);
     background(50);
-    setInterval(secondDraw, 3000);
+    setInterval(secondDraw, 1000);
     prima = true;
 }
 
 function draw() {
-    var time = gettime();
-    var points = font.textToPoints(time, 100, 200, 192, {
-        sampleFactor: 0.25
-    });
-
     if (prima) {
+        var time = gettime();
+        var points = font.textToPoints(time, 100, 200, 192, {
+            sampleFactor: 0.25
+        });
         for (var i = 0; i < points.length; i++) {
             var pt = points[i];
             var vehicle = new Vehicle(pt.x, pt.y);
@@ -26,9 +25,9 @@ function draw() {
         }
         prima = false;
         console.log("Prima");
+        console.log("Lunghezza vehicles:" + vehicles.length);
+        background(50);
     }
-    console.log("Lunghezza vehicles:" + vehicles.length);
-    background(50);
     for (var i = 0; i < vehicles.length; i++) {
         var v = vehicles[i];
         v.behaviors();
@@ -42,7 +41,6 @@ function secondDraw() {
     var points = font.textToPoints(time, 100, 200, 192, {
         sampleFactor: 0.25
     });
-
     if (points.length <= vehicles.length) {
         for (var k = 0; k < points.length; k++) {
             vehicles[k].visible = true;
@@ -56,7 +54,6 @@ function secondDraw() {
         for (var i = vehicles.length; i < points.length; i++) {
             vehicles.pop();
         }
-
         for (var i = vehicles.length; i < points.length; i++) {
             var pt = points[i];
             var vehicle = new Vehicle(pt.x, pt.y);
