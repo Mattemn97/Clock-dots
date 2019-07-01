@@ -37,6 +37,7 @@ function draw() {
 }
 
 function secondDraw() {
+    background(50);
     var time = gettime();
     var points = font.textToPoints(time, 100, 200, 192, {
         sampleFactor: 0.25
